@@ -8,6 +8,7 @@ public class Countdown : MonoBehaviour
 {
     public float countdownTime = 60f; // Initial countdown time in seconds
     public TextMeshProUGUI countdownText;
+    public static bool lost = true;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class Countdown : MonoBehaviour
     {
         while (countdownTime > 0)
         {
+
             // Decrease countdown time
             countdownTime -= Time.deltaTime; // Use Time.deltaTime for real-time countdown
 
@@ -33,9 +35,14 @@ public class Countdown : MonoBehaviour
 
             // Wait for the next frame
             yield return null;
+
+            if (countdownTime <= 0){
+                lost = false;
+            CharacterControllerLive.GameOver(lost);
+        }
         }
 
-        Debug.Log("Countdown finished");
+        
     }
 
     void UpdateCountdownText()
@@ -43,4 +50,5 @@ public class Countdown : MonoBehaviour
         // Update the UI text with the current countdown time
         countdownText.text = "Time: " + Mathf.RoundToInt(countdownTime).ToString();
     }
+    
 }

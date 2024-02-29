@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int inTime = 400 - (int)Time.realtimeSinceStartup;
+        int inTime = 20 - (int)Time.realtimeSinceStartup;
         string timeStr = $"Time \n {inTime}";
         timerText.text = Time.realtimeSinceStartup.ToString();
     }
